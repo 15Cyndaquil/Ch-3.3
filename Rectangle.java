@@ -32,12 +32,10 @@ public class Rectangle extends Application {
 
 		//Creating text in the middle of column one
 		//which occupies both rows
-		Label text = new Label("Input the height and w");
+		Label text = new Label("Input the height and width of your rectangle");
 		grid.add(text, 0, 0);
-		GridPane.setHalignment(text, HPos.RIGHT);
-		Label text1 = new Label("idth of your rectangle");
-		grid.add(text1, 1, 0);
-		GridPane.setHalignment(text1, HPos.LEFT);
+		GridPane.setHalignment(text, HPos.CENTER);
+		GridPane.setColumnSpan(text, 2);
 		
 		//Creating labels above text inputs
 		Label heightl = new Label("Height");
