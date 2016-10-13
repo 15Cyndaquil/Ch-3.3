@@ -17,6 +17,9 @@ public class Rectangle extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
+		//Created grid with 2 columns and 6 rows 
+		//Columns are 300 pixels long
+		//Rows are 50 pixels long
 		GridPane grid = new GridPane();
 		for (int col=0; col<2; col++) {
 			ColumnConstraints column = new ColumnConstraints(300);
@@ -26,6 +29,9 @@ public class Rectangle extends Application {
 			RowConstraints row = new RowConstraints(50);
 			grid.getRowConstraints().add(row);
 		}
+
+		//Creating text in the middle of column one
+		//which occupies both rows
 		Label text = new Label("Input the height and w");
 		grid.add(text, 0, 0);
 		GridPane.setHalignment(text, HPos.RIGHT);
@@ -33,6 +39,7 @@ public class Rectangle extends Application {
 		grid.add(text1, 1, 0);
 		GridPane.setHalignment(text1, HPos.LEFT);
 		
+		//Creating labels above text inputs
 		Label heightl = new Label("Height");
 		grid.add(heightl, 0, 1);
 		GridPane.setHalignment(heightl, HPos.CENTER);
@@ -41,6 +48,7 @@ public class Rectangle extends Application {
 		grid.add(widthl, 1, 1);
 		GridPane.setHalignment(widthl, HPos.CENTER);
 		
+		//Creating text user text inputs
 		TextField height = new TextField();
 		height.setPromptText("Enter the height");
 		grid.add(height, 0, 2);
@@ -49,7 +57,10 @@ public class Rectangle extends Application {
 		width.setPromptText("Enter the width");
 		grid.add(width, 1, 2);
 		
+		//Creating buttons for submiting user inputs
+		//and for exiting the program
 		Button submit = new Button("Submit");
+		//Alows submit button to be activated by enter
 		submit.setDefaultButton(true);
 		grid.add(submit, 0, 3);
 		GridPane.setHalignment(submit, HPos.CENTER);
@@ -60,6 +71,7 @@ public class Rectangle extends Application {
 		GridPane.setValignment(cancel, VPos.CENTER);
 		grid.add(cancel, 1, 3);
 		
+		//Creating output labels
 		Label output1 = new Label();
 		grid.add(output1, 0, 5);
 		GridPane.setHalignment(output1, HPos.CENTER);
@@ -67,9 +79,10 @@ public class Rectangle extends Application {
 		Label output2 =new Label();
 		grid.add(output2, 1, 5);
 		GridPane.setHalignment(output2, HPos.CENTER);
-		
+				
+		//Setting up event for when submit button is pressed
 		submit.setOnAction(new EventHandler<ActionEvent>(){
-			
+		
 			@Override
 			public void handle(ActionEvent submita){
 				String width1;
@@ -79,6 +92,7 @@ public class Rectangle extends Application {
 				double heightf;
 				double area;
 				double perimiter;
+				//Using try to weed out any non number inputs
 				try
 				{
 					width1 = width.getText();
@@ -92,15 +106,17 @@ public class Rectangle extends Application {
 					output1.setText("The Perimiter of your rectangle is " + perimiterf);
 					output2.setText("The Area of your rectangle is " + areaf);
 				}
+				//Reseting outputs and saying that you did not input numbers 
 				catch (NumberFormatException f)
 				{
 					output2.setText("");
 					output1.setText("You did not input numbers");
 				}
-				
+			
 			}
 		});
 		
+		//Setting up cancel button to close program		
 		cancel.setOnAction(new EventHandler<ActionEvent>(){
 		
 			@Override
@@ -109,6 +125,7 @@ public class Rectangle extends Application {
 			}
 		});
 		
+		//Applying my GridPane to a scene and then applying scene to stage
 		Scene scene = new Scene(grid, 600, 300);
 		primaryStage.setScene(scene);
 		primaryStage.show();
